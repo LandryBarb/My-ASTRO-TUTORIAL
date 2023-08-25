@@ -1,18 +1,65 @@
+---
+import '../styles/global.css';
+
+const pageTitle = "About me";
+const identity = {
+    firstName:"Landry",
+    country:"USA",
+    occupation: 'Developer',
+    hobbies:["dancing", "singing","reading"],
+};
+
+const skills = ["html", 'css', 'sass'];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "pink";
+const fontWeight ="900";
+---
+
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{pageTitle}</title>
+        <style define:vars={{skillColor, fontWeight}}>
+            h1 {
+              color: purple;
+              font-size: 4rem;
+            }
+            .skill {
+    color: green;
+    color:var(--skillColor);
+    font-weight: var(--fontWeight);
+  }
+          </style>
 	</head>
 	<body>
         <a href="/">Home</a>
 <a href="/about/">About</a>
 <a href="/blog">blog</a>
-<h1>About Me</h1>
+<h1>{pageTitle}</h1>
 <h2>... and my new Astro site!</h2>
 		<h1>about</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet vitae ullam dolores atque magni commodi non. Quia perspiciatis fugit sint quidem voluptatum et similique vel rem.</p>
+       <p>
+        here area a few facts
+       </p>
+       {happy && <p>i am happy to learn astro</p>}
+       {finished && <p>i finished the turtorial</p>}
+       {goal === 3 ? <p>my goal is to finish tomorrow</p> : <p>my goal is not 3 days</p>}
+       <ul>
+        <li>ny name is {identity.firstName}.</li>
+        <li>i live in {identity.country}</li>
+        <li>my favority hobbies are {identity.hobbies}</li>
+        
+       </ul>
+       <p>my skills are:</p>
+       <ul>
+       {skills.map((skill)=><li class="skill">{skill}</li>)}
+       </ul>
 	</body>
 </html>
